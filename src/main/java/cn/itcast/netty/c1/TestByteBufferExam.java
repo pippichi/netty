@@ -10,7 +10,7 @@ public class TestByteBufferExam {
            Hello,world\n
            I'm zhangsan\n
            How are you?\n
-          变成了下面两个byteBuffer（这种现象叫粘包，半包(粘包：上面三条数据合并成一条；半包：发送数据的服务器缓冲区大小决定了他一次能发多少数据，
+          变成了下面两个byteBuffer（这种现象叫粘包，半包(粘包：存在大于等于两条完整数据合并成一条；半包：发送数据的服务器缓冲区大小决定了他一次能发多少数据，
           有时候一整条数据一次发不完就会分多次发)）
            Hello,world\nI'm zhangsan\nHo
            w are you?\n
@@ -22,6 +22,11 @@ public class TestByteBufferExam {
         source.put("w are you?\\n".getBytes());
         split(source);
     }
+
+    /**
+     * 读取一条完整的信息
+     * @param source
+     */
     private static void split(ByteBuffer source) {
         source.flip();
         for (int i = 0; i < source.limit(); ++i) {
