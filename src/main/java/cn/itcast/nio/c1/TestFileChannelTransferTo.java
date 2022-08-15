@@ -1,4 +1,4 @@
-package cn.itcast.netty.c1;
+package cn.itcast.nio.c1;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
