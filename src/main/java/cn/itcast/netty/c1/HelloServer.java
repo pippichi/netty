@@ -8,7 +8,9 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.string.StringDecoder;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class HelloServer {
     public static void main(String[] args) {
         // 启动器，负责组装netty组件，启动服务器
@@ -29,7 +31,7 @@ public class HelloServer {
                             @Override // 读事件
                             public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
                                 // 打印上一步转换好的字符串
-                                System.out.println(msg);
+                                log.info((String) msg);
                             }
                         });
                     }
