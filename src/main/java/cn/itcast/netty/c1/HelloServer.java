@@ -19,7 +19,7 @@ public class HelloServer {
                 .group(new NioEventLoopGroup())
                 // 选择服务器的ServerSocketChannel实现
                 .channel(NioServerSocketChannel.class)
-                // boss 负责处理连接worker(child)负责处理读写
+                // boss 负责处理连接 worker(child)负责处理读写
                 .childHandler(
                         // channel代表和客户端进行数据读写的通道 Initializer初始化，负责添加别的handler
                         new ChannelInitializer<NioSocketChannel>() {
