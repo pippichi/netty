@@ -11,7 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.nio.charset.Charset;
 
 @Slf4j
-public class TestEventLoopServer {
+public class EventLoopServer {
     public static void main(String[] args) {
         // 创建一个独立的EventLoopGroup
         EventLoopGroup group = new DefaultEventLoopGroup();
