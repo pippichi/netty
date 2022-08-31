@@ -21,7 +21,7 @@ public class TestByteBuf {
         log(buffer);
     }
 
-    private static void log(ByteBuf buf) {
+    public static void log(ByteBuf buf) {
         int length = buf.readableBytes();
         int rows = length / 16 + (length % 15 == 0 ? 0 : 1) + 4;
         StringBuilder sb = new StringBuilder(rows * 80 * 2)
