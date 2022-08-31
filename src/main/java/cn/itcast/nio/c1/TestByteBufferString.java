@@ -14,7 +14,7 @@ public class TestByteBufferString {
 
         // 2.Charset
         Charset.defaultCharset(); // 默认字符集
-        ByteBuffer buffer2 = StandardCharsets.UTF_8.encode("hello");// 标准字符集
+        ByteBuffer buffer2 = StandardCharsets.UTF_8.encode("hello"); // 标准字符集
 
         // 3.wrap
         buffer2 = ByteBuffer.wrap("hello".getBytes());
