@@ -15,10 +15,10 @@ import java.net.InetSocketAddress;
 @Slf4j
 public class HelloWorldServer {
     public static void main(String[] args) {
-
+        start();
     }
 
-    void start() {
+    static void start() {
         NioEventLoopGroup boss = new NioEventLoopGroup();
         NioEventLoopGroup worker = new NioEventLoopGroup();
         try {
