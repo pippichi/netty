@@ -1,12 +1,12 @@
-package cn.itcast.advance;
+package cn.itcast.advance.c1;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
-import io.netty.channel.ChannelOption;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import io.netty.handler.codec.LineBasedFrameDecoder;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 import lombok.extern.slf4j.Slf4j;
@@ -14,32 +14,28 @@ import lombok.extern.slf4j.Slf4j;
 import java.net.InetSocketAddress;
 
 @Slf4j
-public class HelloWorldServer {
+public class TestLineBasedFrameDecoderServer {
     public static void main(String[] args) {
-        start();
-    }
-
-    static void start() {
         NioEventLoopGroup boss = new NioEventLoopGroup();
         NioEventLoopGroup worker = new NioEventLoopGroup();
         try {
             ServerBootstrap serverBootstrap = new ServerBootstrap();
-            serverBootstrap.group(boss, worker);
             serverBootstrap.channel(NioServerSocketChannel.class);
-            serverBootstrap.option(ChannelOption.SO_RCVBUF, 10);
+            serverBootstrap.group(boss, worker);
             serverBootstrap.childHandler(new ChannelInitializer<NioSocketChannel>() {
                 @Override
-                protected void initChannel(NioSocketChannel ch) throws Exception {
-                    ch.pipeline().addLast(new LoggingHandler(LogLevel.DEBUG));
+                protected void initChannel(NioSocketChannel nioSocketChannel) throws Exception {
+                    nioSocketChannel.pipeline().addLast(new LineBasedFrameDecoder(1024));
+                    nioSocketChannel.pipeline().addLast(new LoggingHandler(LogLevel.DEBUG));
                 }
             });
-            ChannelFuture channelFuture = serverBootstrap.bind(new InetSocketAddress(8888)).sync();
+            final ChannelFuture channelFuture = serverBootstrap.bind(new InetSocketAddress(8888)).sync();
             channelFuture.channel().closeFuture().sync();
         } catch (InterruptedException e) {
-            log.error("server error", e);
+            e.printStackTrace();
         } finally {
-            boss.shutdownGracefully();
             worker.shutdownGracefully();
+            boss.shutdownGracefully();
         }
     }
 }
