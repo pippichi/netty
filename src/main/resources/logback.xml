@@ -102,9 +102,8 @@
         </filter>
     </appender>
 
-
     <!-- 为某个包下的所有类的指定Appender 这里也可以指定类名称例如：com.aa.bb.ClassName -->
-    <logger name="cn.itcast.netty" level="DEBUG" additivity="false">
+    <logger name="cn.itcast" level="DEBUG" additivity="false">
         <appender-ref ref="stdout" />
     </logger>
 
