@@ -3,7 +3,7 @@ package cn.itcast.chatserver.client;
 import cn.itcast.chatserver.client.handler.RpcResponseMessageHandler;
 import cn.itcast.chatserver.message.RpcRequestMessage;
 import cn.itcast.chatserver.protocol.MessageCodecSharable;
-import cn.itcast.chatserver.protocol.ProcotolFrameDecoder;
+import cn.itcast.chatserver.protocol.ProtocolFrameDecoder;
 import cn.itcast.chatserver.protocol.SequenceIdGenerator;
 import cn.itcast.chatserver.server.service.HelloService;
 import io.netty.bootstrap.Bootstrap;
@@ -99,7 +99,7 @@ public class RpcClientManager {
         bootstrap.handler(new ChannelInitializer<SocketChannel>() {
             @Override
             protected void initChannel(SocketChannel ch) throws Exception {
-                ch.pipeline().addLast(new ProcotolFrameDecoder());
+                ch.pipeline().addLast(new ProtocolFrameDecoder());
                 ch.pipeline().addLast(LOGGING_HANDLER);
                 ch.pipeline().addLast(MESSAGE_CODEC);
                 ch.pipeline().addLast(RPC_HANDLER);
