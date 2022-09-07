@@ -20,6 +20,8 @@ public class RpcServer {
         NioEventLoopGroup worker = new NioEventLoopGroup();
         LoggingHandler LOGGING_HANDLER = new LoggingHandler(LogLevel.DEBUG);
         MessageCodecSharable MESSAGE_CODEC = new MessageCodecSharable();
+
+        // rpc请求消息处理器
         RpcRequestMessageHandler RPC_HANDLER = new RpcRequestMessageHandler();
         try {
             ServerBootstrap serverBootstrap = new ServerBootstrap();

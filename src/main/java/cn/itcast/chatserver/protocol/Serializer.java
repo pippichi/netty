@@ -71,7 +71,7 @@ public interface Serializer {
             }
         }
 
-        @Override             //   String.class
+        @Override                   // String.class
         public JsonElement serialize(Class<?> src, Type typeOfSrc, JsonSerializationContext context) {
             // class -> json
             return new JsonPrimitive(src.getName());
